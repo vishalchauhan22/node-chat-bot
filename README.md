@@ -23,5 +23,5 @@ Refer the example directory to checkout how this works.
 #### Below is the architecture that the bot follows.
 
 <br>
-![alt text](https://github.com/vishalchauhan22/node-chat-bot/examples/public/flow.jpg "Chatflow")
 
+![alt text](https://github.com/vishalchauhan22/node-chat-bot/blob/master/examples/public/flow.jpg "Chatflow")
