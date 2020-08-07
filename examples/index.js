@@ -1,4 +1,4 @@
-let SimpleChatBot = require('simple-node-chatbot');
+let SimpleChatBot = require('../index');
 let socketIo = require("socket.io");
 let express = require('express');
 let app = express();

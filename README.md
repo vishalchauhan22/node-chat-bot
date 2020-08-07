@@ -7,6 +7,10 @@ This module allows you to create your very first chatbot that run on you designe
 Step 1. create the structured chat flow, i.e the conversation flow, purely in a JSON format, but as a module in javascript.
 That's it. you are good to test the bot.
 
+
+![alt text](https://raw.githubusercontent.com/vishalchauhan22/node-chat-bot/master/examples/public/demo.gif "Demo")
+
+
 ## Applications:
 The best use of this bot is to drive a structrured conversation or to answer frequjestly asked questions.
 
