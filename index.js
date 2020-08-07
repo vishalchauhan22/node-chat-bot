@@ -7,24 +7,38 @@ function Savio(configurations){
     this.dbService = configurations.dbService;
     this.welcomeFlow = configurations.welcomeFlow;
     this.socket = configurations.socket
-
-    if(!this.socket){
-        this.socket.on('connection', (sock)=>{
-            sock.on('chat-message', function(data){
-                this.getMessage(data.text, data.from)
+    this.getMessage = function(text, from){
+        return new Promise((resolve, reject)=>{
+            return this.dbService.getUser(from).then((userDetails)=>{
+                if(!userDetails){
+                    userDetails = {
+                        from: from
+                    }
+                }
+                return responder.generateResponseMessage(text, userDetails, this.chatFlow, this.dbService, this.welcomeFlow).then((resp)=>{
+                    return resolve(resp)
+                },(err)=>{
+                    return reject(err)
+                });
+            }, (error)=>{
+              return reject(error)  
             })
         })
     }
-}
 
-Savio.prototype.getMessage = function(text, from){
-    return new Promise((resolve, reject)=>{
-        this.dbService.getUser(from).then((userDetails)=>{
-            return responder.generateResponseMessage(text, userDetails, this.chatFlow, this.dbService, this.welcomeFlow);
-        }, (error)=>{
-          return reject(error)  
+    if(this.socket){
+        let self = this;
+        this.socket.on('connection', (sock)=>{
+            sock.on('chat-message', function(data){
+                self.getMessage(data.text, data.from).then((resp)=>{
+                    sock.emit("chat-message", resp[0])
+                }, (error)=>{
+                    console.log("Err", error)
+                    throw error;
+                })
+            })
         })
-    })
+    }
 }
 
 Savio.prototype.serviceMessage = function(options){

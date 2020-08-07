@@ -1,8 +1,8 @@
 exports.generateResponseMessage = function(text, userDetails, chatFlow, dbService, welcomeFlow){
     return new Promise((resolve, reject)=>{
-        if(!userDetails){
+        if(!userDetails || !userDetails.next_flow){
             return dbService.saveUser({
-                from: from,
+                from: userDetails.from,
                 next_flow: chatFlow.flow[welcomeFlow].wiresTo
             }).then((response)=>{
                 return resolve(chatFlow.flow[welcomeFlow].message);
@@ -17,10 +17,7 @@ exports.generateResponseMessage = function(text, userDetails, chatFlow, dbServic
         let message = evaluateMessage(text, userDetails.next_flow, chatFlow);
 
         //Check promise type of new state
-
-        return dbService.updateUser({
-            from: from
-        },{
+        return dbService.updateUser(userDetails.from,{
             next_flow: chatFlow.flow[userDetails.next_flow].wiresTo
         }).then((response)=>{
             return resolve(message);
@@ -31,14 +28,18 @@ exports.generateResponseMessage = function(text, userDetails, chatFlow, dbServic
     })
 }
 
-function evaluateState(text, nextFlow, chatFlow, userDetails){
+function evaluateMessage(text, nextFlow, chatFlow, userDetails){
+    if(!nextFlow){
+        return [""]
+    }
+
     switch (chatFlow.flow[nextFlow].type) {
         case 'function':
             return chatFlow.flow[nextFlow].getMessage(text, userDetails)
         case 'static': 
             return chatFlow.flow[nextFlow].message;
         case 'random': 
-            return getRandom(chatFlow.flow[nextFlow].random)
+            return getRandom(chatFlow.flow[nextFlow].message)
         case 'one-of': 
             return chatFlow.flow[nextFlow].oneOf[text]
         default:

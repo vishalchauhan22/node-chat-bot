@@ -1,7 +1,7 @@
 {
   "name": "simple-node-chatbot",
-  "version": "1.0.1",
-  "description": "JSON Chatbot",
+  "version": "1.0.3",
+  "description": "Simple JSON Chatbot",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
