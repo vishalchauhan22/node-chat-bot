@@ -24,4 +24,4 @@ Refer the example directory to checkout how this works.
 
 <br>
 
-![alt text](https://github.com/vishalchauhan22/node-chat-bot/blob/master/examples/public/flow.jpg "Chatflow")
+![alt text](https://raw.githubusercontent.com/vishalchauhan22/node-chat-bot/master/examples/public/flow.jpg "Chatflow")
