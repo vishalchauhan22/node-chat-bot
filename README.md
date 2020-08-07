@@ -11,6 +11,10 @@ That's it. you are good to test the bot.
 ![alt text](https://raw.githubusercontent.com/vishalchauhan22/node-chat-bot/master/examples/public/demo.gif "Demo")
 
 
+## Configurations
+![alt text](https://raw.githubusercontent.com/vishalchauhan22/node-chat-bot/master/examples/public/chatflow.png "Demo")
+
+
 ## Applications:
 The best use of this bot is to drive a structrured conversation or to answer frequjestly asked questions.
 
