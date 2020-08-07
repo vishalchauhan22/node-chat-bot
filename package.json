@@ -1,6 +1,6 @@
 {
   "name": "simple-node-chatbot",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Simple JSON Chatbot",
   "main": "index.js",
   "scripts": {
@@ -10,6 +10,11 @@
     "type": "git",
     "url": "git+https://github.com/vishalchauhan22/node-chat-bot.git"
   },
+  "keywords": [
+    "chatbot",
+    "json chatbot",
+    "structure chatbot"
+  ],
   "author": "Vishal Chauhan",
   "license": "ISC",
   "bugs": {
